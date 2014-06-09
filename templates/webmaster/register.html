@@ -1,0 +1,29 @@
+<!DOCYTYPE html>
+<html>
+<head>
+    <meta type="utf-8">
+    <title>首页</title>
+    <link href="../static/css/index.css" media="screen" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <h1>Hello, xingcloud!</h1>
+    <h2>by <a href="http://www.xingcloud.com" target="_blank">welcome to register.</a></h2>
+    <form action='http://localhost:9050/register' name='register' method="POST" enctype="multipart/form-data">
+        注册类型：<input type="text" name="type" /><BR />
+        广告主类型：<input type="text" name="advertiserType" /><BR />
+        用户名：<input type="text" name="advertiserName" /><BR />
+        密码：<input type="text" name="advertiserPassword" /><BR />
+        公司名：<input type="text" name="advertiserCompanyName" /><BR />
+        通讯地址：<input type="text" name="advertiserMailingAddress" /><BR />
+        邮编：<input type="text" name="advertiserMailCode" /><BR />
+        手机：<input type="text" name="advertiserPhone" /><BR />
+        座机：<input type="text" name="advertiserTelNumber" /><BR />
+        简介：<input type="text" name="advertiserDescription" /><BR />
+        网站url：<input type="text" name="advertiserWebsiteUrl" /><BR />
+        logo宽度：<input type="text" name="width" /><BR />
+        logo高度：<input type="text" name="height" /><BR />
+        logo：<input type='file' name='filename' /><BR />
+        <input type="submit" value="注册" />
+    </form>
+</body>
+</html>
