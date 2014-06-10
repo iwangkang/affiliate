@@ -40,7 +40,6 @@ SEARCH_TIMEOUT = 60 * 60 * 24
 SEARCH_NEW_HOT_TIMEOUT = 60 * 3
 
 # REBBITMQ
-RABBITMQ_BROKER_URL = "amqp://kratos_v2:GZLxVSdOQTIIKGpeoC3vv5Myh@50.23.186.242:5672/affiliate"
 
 # IMPORT FILES
 FILES_DIR = '/home/kratos/files/affiliate'
