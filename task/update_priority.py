@@ -19,9 +19,9 @@ def do_update_priority(product):
     """更新产品优先级  优先级=1/关键词数 + 商品价格*点击数 + 1/keywordList.index"""
     try:
         keyword_list = product.get('keywordList')
-        product_price = float(product.get('productPrice'))
+        product_price = float(product.get('price'))
         #获取该商品总的点击数
-        cpc_list = MongodbUtil.find('cpc', {'cpcProductId': product.get('_id')})
+        cpc_list = MongodbUtil.find('shopping', 'cpc', {'cpcProductId': product.get('_id')})
         cpc_count = 1
         cpc_active_count = 1
         for cpc in cpc_list:
@@ -33,9 +33,9 @@ def do_update_priority(product):
         for keyword in keyword_list:
             priority = 1.0 / float(len(keyword_list)) + MathUtil.parse2percent(product_price * cpc_average_count) + 1.0 / float(index)
             index += 1
-            keyword_index = MongodbUtil.find_one('keywordIndex', {'keyword': keyword})
+            keyword_index = MongodbUtil.find_one('shopping', 'keywordIndex', {'keyword': keyword})
             keyword_index['invertedIndex'][product.get('_id').__str__()] = priority
-            obj_id = MongodbUtil.save('keywordIndex', keyword_index)
+            obj_id = MongodbUtil.save('shopping', 'keywordIndex', keyword_index)
             if obj_id:
                 logger.info('Update %s\'s priority successfully!!!' % keyword)
             else:
@@ -46,7 +46,7 @@ def do_update_priority(product):
 
 def update_priority():
     """多线程同步更新商品优先级"""
-    product_list = MongodbUtil.find('product')
+    product_list = MongodbUtil.find('shopping', 'product')
     for product in product_list:
         do_update_priority(product)
 

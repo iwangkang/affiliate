@@ -14,28 +14,45 @@ PROCESS = 1
 PORT = 5000
 PORT_GROUP = None
 
-# HOST SRC
-HOST_SRC = 'http://affiliate.xingcloud.com'
+# XINGCLOUD SHOPPING
+WEBMASTER = 'xc_shopping'
 
-# ROUTING PATH TEMPLATE
+# HOST SRC
+DEFAULT_PRODUCT_PIC = 'http://affiliate.xingcloud.com/static/images/default_product_pic.png'
+
+# INDEX SHOPPING ROUTING PATH TEMPLATE
 INDEX_TEMPLATE = 'index.html'
 ERROR_TEMPLATE = 'error.html'
 OFFLINE_TEMPLATE = 'offline.html'
+NOTHING_TEMPLATE = 'shopping/nothing.html'
+WEB_VIEW_TEMPLATE = 'shopping/web_view.html'
+LIST_VIEW_TEMPLATE = 'shopping/list_view.html'
+# MERCHANT ROUTING PATH TEMPLATE
 UPLOAD_TEMPLATE = 'merchant/upload.html'
-INDEX_TEMPLATE_MERCHANT = 'merchant/index.html'
-INDEX_TEMPLATE_WEBMASTER = 'webmaster/index.html'
+# WEBMASTER ROUTING PATH TEMPLATE
+PRODUCT_LIST_TEMPLATE = 'webmaster/product_list.html'
+INNER_AD_TEMPLATE = 'webmaster/inner_ad.html'
+DEFAULT_INNER_AD_TEMPLATE = 'webmaster/default_inner_ad.html'
+# CMS ROUTING PATH TEMPLATE
+LOGIN_TEMPLATE = 'cms/login.html'
+CMS_INDEX_TEMPLATE = 'cms/index.html'
+CMS_ERROR_TEMPLATE = 'cms/error.html'
+
+# COOKIE
+COOKIE_ALIVE_TIME = 7
 
 # EMAIL LOGGER
 LOG_MAILHOST = 'smtp.exmail.qq.com:25'
 LOG_FROM = 'wangkang@xingcloud.com'
-LOG_TO = ('1228202366@qq.com', )
+LOG_TO = ('wangkang@xingcloud.com', '393478846@qq.com')
 LOG_SUBJECT = 'Email for affiliate error.'
-LOG_CREDENTIAL = ('wangkang@xingcloud.com', '123456')
+LOG_CREDENTIAL = ('wangkang@xingcloud.com', 'wk521025424')
 
 # PAGINATION
 PAGE_SIZE = 10
+SHOPPING_PAGE_SIZE = 60
 
-# TASK IMPORT PRODUCT
+# TASK IMPORT PRODUCT (days)
 ALIVE_TIME = 30
 UPLOAD_MAX_SIZE = 1024*1024*30
 IMAGE_SIZE_LIST = {
@@ -44,14 +61,19 @@ IMAGE_SIZE_LIST = {
     'big': (337, 337),
 }
 
+# KEYWORD GRADE
+CATEGORY_GRADE = 3.9
+DESC_GRADE = 0.05
+NAME_GRADE = 0.09
+
 # THREAD POOL
 DEFAULT_MIN_POOL = 10
 DEFAULT_MAX_POOL = 64
 
 # PRODUCT FEEDS TAG
+MAX_INSERT_PRODUCT_SIZE = 100
 TAG_DICT = {
     'product': 'product',
-    'merchant': 'merchant',
     'id': 'id',
     'name': 'name',
     'url': 'url',
@@ -60,29 +82,18 @@ TAG_DICT = {
     'currency': 'currency',
     'price': 'price',
     'category': 'category',
-    'mpn': 'mpn',
-    'upc': 'upc',
-    'ean': 'ean',
-    'isbn': 'isbn',
-    'sku': 'sku',
+    'merchant': 'merchant',
+    'color': 'color',
+    'size': 'size',
+    'merchantCategory': 'merchantCategory',
+    'availability': 'availability',
+    'shippingWeight': 'shippingWeight',
+    'gender': 'gender',
+    'ageGroup': 'ageGroup',
 }
 
-# TAG_DICT = {
-#     'product': 'product',
-#     'merchant': 'marca',
-#     'id': 'id',
-#     'name': 'nome_produto',
-#     'url': 'url',
-#     'description': 'descricao',
-#     'image': 'imagem',
-#     'currency': 'currency',
-#     'price': 'preco',
-#     'category': 'categoria',
-#     'mpn': 'mpn',
-# }
-
 # 切词分隔符 & 需要替换转义的无用字符       注释：会根据xml文件不断地迭代更新
-WORD_SEPARATOR = [':', ' ', '/']
+WORD_SEPARATOR = [':', ' ', '/', '+']
 WORD_REPLACE = {
     '(': '', ')': '',
     '&amp;': '&', '.': '',
@@ -101,5 +112,5 @@ WORD_REPLACE = {
     '%': '', '~': '',
     'φ': '', '?': '',
     '≤':'', '-': '',
-    '&': '',
+    '&': '', '\t\t\t': ' ',
 }

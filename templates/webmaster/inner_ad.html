@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XingCloud Shopping</title>
+    <link rel="stylesheet" media="screen" charset="utf-8" type="text/css" href="../../static/css/ad/inner_ad.css">
+    <script type="text/javascript" src="../../static/js/jquery1.7.1.js"></script>
+    <script type="text/javascript" src="../../static/js/inner_ad.js"></script>
+</head>
+<body>
+    <div class="GGJHBMRCDG" style="width: 128px;height: 128px;">
+        <div>
+            <div style="top: 0px;" id="banner_pic" class="GGJHBMRCGG">
+            {% for product in page['suggestItems'] %}
+                <a target="_blank" title="{{ product['title'] }}" href="{{ product['url'] }}">
+                    <img class="gwt-Image" src="{{ product['smallImageUrl'] }}">
+                </a>
+            {% end %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

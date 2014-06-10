@@ -18,7 +18,7 @@ from affiliate.lib.model.mongod.mongodb_util import MongodbUtil
 def export_keyword(file_path, file_name):
     """导出关键词"""
     try:
-        keyword_index_list = MongodbUtil.find('keywordIndex')
+        keyword_index_list = MongodbUtil.find('shopping', 'keywordIndex')
         file_content = ''
         index = 0
         for keyword_index in keyword_index_list:

@@ -18,6 +18,9 @@ from affiliate.lib.util.date_util import DateUtil
 
 @affiliate_celery.task(ignore_result=True)
 def clear_update_product():
-    logger.info('[TIME: %s] METHOD: clear_update_product' % DateUtil.get_sys_time())
-    update_priority()
-    clear_product()
+    try:
+        logger.info('[TIME: %s] METHOD: clear_update_product' % DateUtil.get_sys_time())
+        clear_product()
+        update_priority()
+    except Exception as e:
+        logger.error('Clear and update product error: %s' % e.message)

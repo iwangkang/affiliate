@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="description" content="XingCloud Shopping helps shoppers find and buy products across online and brick and mortar retailers.">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>XingCloud Shopping</title>
+
+        <link href="../../static/images/favicon.ico" type="image/x-icon" rel="shortcut icon">
+        <link rel="stylesheet" media="screen" charset="utf-8" type="text/css" href="../../static/css/cms.css">
+        <script type="text/javascript" src="../../static/js/jquery1.7.1.js"></script>
+        <script type="text/javascript" src="../../static/js/cms.js"></script>
+        <!--[if IE]>
+        <script type="text/javascript" src="../../static/js/dygraph/excanvas.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="../../static/js/dygraph/dygraph-dev.js"></script>
+	</head>
+	<body id="body" class="  wide dragdrop-dropTarget dragdrop-boundary">
+        <div id="content" style="height: 300px;">
+            <font size=-1>(Mouse over to highlight individual values. Click and drag to zoom. Double-click to zoom out.)</font><br/>
+
+            begin date：<input id="begin" name="begin" type="text">
+            end date：<input id="end" name="end" type="text">
+            <input type="submit" value="drawing" onclick="getParam();"/>
+            <table>
+                <tr>
+                    <td>
+                        <div id="drawing"></div>
+                    </td>
+                    <td valign=top>
+                        <div id="status" style="width:200px; font-size:0.8em; padding-top:5px;"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+	</body>
+</html>

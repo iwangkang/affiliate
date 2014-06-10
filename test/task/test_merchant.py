@@ -13,8 +13,8 @@ sys.setdefaultencoding('utf-8')
 from affiliate.task.import_merchant import import_merchant, import_product_id_2_merchant
 
 
-def test_import_merchant():
-    import_merchant()
+def test_import_merchant(merchant_name):
+    import_merchant(merchant_name)
 
 
 def test_import_product_id_2_merchant(merchant_name):
@@ -23,4 +23,4 @@ def test_import_product_id_2_merchant(merchant_name):
 
 if __name__ == '__main__':
     # test_import_merchant()
-    test_import_product_id_2_merchant('FocalPrice')
+    test_import_product_id_2_merchant('dhgate')

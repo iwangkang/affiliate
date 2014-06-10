@@ -10,17 +10,31 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+import os
 import random
 import logging
 
 from celery import task
 from celery.utils.log import get_task_logger
 
+from affiliate.config import settings
 from affiliate.config.celeryconfig import affiliate_celery
+from affiliate.lib.model.mongod.mongodb_util import MongodbUtil
 
-logger = get_task_logger(__name__)
-logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.INFO)
+
+def _get_logger():
+    file_handler = logging.handlers.RotatingFileHandler(
+        os.path.join(settings.log_path, settings.log_file),
+        maxBytes=settings.default_log_size,
+        backupCount=9,
+        encoding="utf-8",
+    )
+    logger = get_task_logger(__name__)
+    logger.addHandler(logging.StreamHandler())
+    logger.addHandler(file_handler)
+    logger.setLevel(logging.INFO)
+
+    return logger
 
 
 class TaskError(Exception):
@@ -42,28 +56,20 @@ class TaskDBError(TaskError):
     pass
 
 
-@task
-def recite():
+def get_merchant_list():
     """
-    测试函数, 随机输出一句诗歌
+    获取广告主列表
 
     """
-    poem = '''There's a mirror likeness between those two
-shining, youthfully-fledged figures, though
-one seems paler than the other and more austere,
-I might even say more perfect, more distinguished,
-than he, who would take me confidingly in his arms,
-how soft then and loving his smile, how blessed his glance!
-Then, it might well have been that his wreath
-of white poppies gently touched my forehead, at times,
-and drove the pain from my mind with its strange scent.
-But that is transient. I can only, now, be well,
-when the other one, so serious and pale,
-the older brother, lowers his dark torch.
-Sleep is so good, Death is better, yet
-surely never to have been born is best.'''
+    merchant_name_list = list()
+    merchant_list = MongodbUtil.find('shopping', 'merchant')
+    for merchant in merchant_list:
+        merchant_name_list.append(merchant.get('name'))
+    return merchant_name_list
 
-    fragments = poem.split('\n')
 
-    logger.info('[Heine]: %s' % fragments[random.randint(0, len(fragments) - 1)])
+logger = _get_logger()
 
+
+if __name__ == '__main__':
+    logger.info('sdfsfsf')

@@ -17,6 +17,9 @@ DEBUG = False
 OFFLINE = False
 PRODUCTION = True
 
+#SRC
+HOST_SRC = 'http://affiliate.xingcloud.com'
+
 #LOG
 LOG_PATH = '/home/kratos/log/affiliate'
 LOG_FILE = 'affiliate_product.log'
@@ -25,22 +28,19 @@ DEFAULT_LOG_SIZE = 1024*1024*50
 # MONGONDB
 MONGOD_HOST = 'localhost'
 MONGOD_PORT = 37017
-MONGOD_DBNAME = 'affiliate'
-
-# Merchant list
-MERCHANT_LIST = [
-    {
-        'name': 'FocalPrice'
-    }
-]
+SHOPPING_DBNAME = 'shopping'
+API_DBNAME = 'api'
 
 # MEMCACHED
 MEMCACHED = {
     'default': ('127.0.0.1:11211', ),
 }
+INDEX_TIMEOUT = 60 * 9
 SEARCH_TIMEOUT = 60 * 60 * 24
+SEARCH_NEW_HOT_TIMEOUT = 60 * 3
 
 # REBBITMQ
+RABBITMQ_BROKER_URL = "amqp://kratos_v2:GZLxVSdOQTIIKGpeoC3vv5Myh@50.23.186.242:5672/affiliate"
 
 # IMPORT FILES
 FILES_DIR = '/home/kratos/files/affiliate'

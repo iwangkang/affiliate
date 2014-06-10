@@ -17,20 +17,23 @@ from affiliate.lib.model.pool.thread_pool import MyThreadPool
 
 
 urls = [
-    'http://affiliate.xingcloud.com/product?source=123456&productId=52c65e5c4ccf4f0f2b0437dc',
-    'http://affiliate.xingcloud.com/image?filename=517a306b158b4f7b911448b467f3232b_128x128.png',
-    'http://affiliate.xingcloud.com/image?filename=6cdb794d498f44fa99bebc26a0e54e17_128x128.png',
-    'http://affiliate.xingcloud.com/product?source=123456&productId=52c65e5c4ccf4f0f2b0437ac',
-    'http://affiliate.xingcloud.com/image?filename=5121095ad8fa4c1783ab65fcd9f621b6_128x128.png',
-    'http://affiliate.xingcloud.com/product?source=123456&productId=52c65e5c4ccf4f0f2b04386f',
-    'http://affiliate.xingcloud.com/image?filename=0406c13e20914117879cdfbc95bd6b92_128x128.png',
-    'http://affiliate.xingcloud.com/product?source=123456&productId=52c65e5c4ccf4f0f2b0437f2',
-    'http://affiliate.xingcloud.com/image?filename=86af28de4f01412db988f4a89233e850_128x128.png',
-    'http://affiliate.xingcloud.com/product?source=123456&productId=52c65e5c4ccf4f0f2b0437e6',
-    'http://affiliate.xingcloud.com/image?filename=5d1ffcfd8fe249c1a3740ef27c5c7431_128x128.png',
-    'http://affiliate.xingcloud.com/product?source=123456&productId=52c65e5e4ccf4f0f2b0438f8',
-    'http://affiliate.xingcloud.com/image?filename=6d197af80f284bdcbbd8f917b31d4006_210x210.png',
-    'http://affiliate.xingcloud.com/product?source=123456&productId=52c65e5c4ccf4f0f2b0438ba',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a3046d',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a3046e',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a3046a',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a3046b',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a3046c',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1baa9ce7c76363a2ea9a',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1baa9ce7c76363a2ea9b',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a30465',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a30466',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a30467',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a30460',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a30461',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a30462',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a30463',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bfb9ce7c76363a30468',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bd29ce7c76363a2f833',
+    'http://affiliate.xingcloud.com/cpc?source=123456&productId=52fb1bd29ce7c76363a2f832',
 ]
 
 
@@ -52,5 +55,8 @@ def test_concurrent_request():
 
 
 if __name__ == '__main__':
-    # test_single_request()
-    test_concurrent_request()
+    import time
+    while True:
+        test_single_request()
+        time.sleep(2)
+    # test_concurrent_request()

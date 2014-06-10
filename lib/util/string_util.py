@@ -70,7 +70,6 @@ class StringUtil(object):
 
         date = None
         date_str = date_str.strip()
-
         for fm in supported:
             try:
                 date = datetime.strptime(date_str, fm)
@@ -102,7 +101,6 @@ class StringUtil(object):
                         clean_word = clean_word.lower().replace(k, v)
                 if clean_word:
                     clean_word_list.append(clean_word)
-
         return clean_word_list
 
     @classmethod
@@ -133,7 +131,6 @@ class StringUtil(object):
                         if not cut_result_list.__contains__(w):
                             cut_result_list.append(w)
         clean_result = cls.clean_list(cut_result_list)
-        # clean_result = [item.strip("\"\',;.{}()\n") for item in cut_result_list]
         return clean_result
 
 

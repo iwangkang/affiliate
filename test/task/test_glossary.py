@@ -22,7 +22,7 @@ def test_replenish_glossary(file_path):
 
 
 if __name__ == '__main__':
-    #导入并补充glossary
+    #导入glossary
     test_import_glossary()
 
     # #补充glossary['used']

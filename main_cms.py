@@ -16,9 +16,7 @@ from tornado import options
 from tornado import process
 
 from affiliate.config import settings
-from affiliate.views.index import IndexHandler, UploadHandler
-from affiliate.views.merchant import ManageProductHandler
-from affiliate.views.webmaster import SearchProductHandler, CPCHandler, ImageHandler
+from affiliate.views.cms import LoginHandler, AnalysisHandler
 
 SETTINGS = dict(
     template_path=os.path.join(os.path.dirname(sys.argv[0]), "templates"),
@@ -27,25 +25,12 @@ SETTINGS = dict(
 
 
 urls = [
-    # Common
-    (r'/', IndexHandler),
-    (r'/upload', UploadHandler),
-
-    # Merchant
-    (r'/merchant/manage', ManageProductHandler),
-
-    # Webmaster
-    (r'/product/search', SearchProductHandler),
-
-    # Tracking statistics interface
-    (r'/product', CPCHandler),
-
-    # Load image interface
-    (r'/image', ImageHandler),
+    (r'/login', LoginHandler),
+    (r'/analysis', AnalysisHandler),
 ]
 
 
-options.define('port', default=6950, type=int)
+options.define('port', default=9899, type=int)
 options.define('fork', default=1, type=int)
 
 
@@ -72,7 +57,7 @@ def main():
 
 
 if __name__ == '__main__':
-    print('Development server running on "http://localhost:6950"')
+    print('Development server running on "http://localhost:9899"')
     print('Quit the server with Control+C')
     main()
 

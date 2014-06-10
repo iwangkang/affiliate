@@ -28,7 +28,7 @@ def get_product_id_list(keyword):
     union_dict = {}
     #按照分词结果查询产品结果集
     for i in xrange(len(keyword_set)):
-        keyword_index = MongodbUtil.find_one('keywordIndex', {'keyword': keyword_set[i]})
+        keyword_index = MongodbUtil.find_one('shopping', 'keywordIndex', {'keyword': keyword_set[i]})
         p_id_dict = keyword_index.get('invertedIndex')
         if p_id_dict:
             union_dict = dict(union_dict.items() + p_id_dict.items())
@@ -46,8 +46,8 @@ def get_product_id_list(keyword):
         union_set = list(set(union_set).union(set(p_id_list_arr[i])))
     union_set = list(set(union_set).difference(set(intersection)))
     #排序
-    intersection = OrderUtil.order_obj_list(union_dict, intersection)
-    union_set = OrderUtil.order_obj_list(union_dict, union_set)
+    intersection = OrderUtil.order_obj_dict(union_dict, intersection)
+    union_set = OrderUtil.order_obj_dict(union_dict, union_set)
 
     product_id_list = list()
     for i in xrange(len(intersection)):
@@ -61,7 +61,7 @@ def get_keyword_set(keyword):
     """获取关键字无重复集合"""
     keyword_set = list()
     #分词模板
-    glossary = MongodbUtil.find_one('glossary')
+    glossary = MongodbUtil.find_one('shopping', 'glossary')
     use_word_list = glossary.get('used')
     un_used_word_list = glossary.get('unUsed')
     for word in use_word_list:
@@ -75,7 +75,7 @@ def get_keyword_set(keyword):
 
 def test_single_request(keyword, pageIndex):
     """单个搜索请求"""
-    url = 'http://affiliate.xingcloud.com/product/search?webmasterId=123456&keyword=%s&pageSize=5&pageIndex=%s'\
+    url = 'http://affiliate.xingcloud.com/product/search?webmaster=123456&keyword=%s&pageSize=5&pageIndex=%s'\
           % (urllib2.quote(keyword), pageIndex)
     print(url)
     result = urllib2.urlopen(url)

@@ -18,7 +18,7 @@ class OrderUtil(object):
     """
 
     @classmethod
-    def order_obj_list(cls, obj_dict, obj_list):
+    def order_obj_dict(cls, obj_dict, obj_list):
         """
         obj_dict: {'a': 0.99, 'e': 0.79, 'f': 0.89}
         obj_list: ['e', 'f']
@@ -35,5 +35,5 @@ class OrderUtil(object):
 if __name__ == '__main__':
     obj_dict = {'a': 0.99, 'e': 0.79, 'f': 0.89, 'c': 0.76, 'g': 0.98}
     obj_list = ['e', 'f', 'c', 'g']
-    result = OrderUtil.order_obj_list(obj_dict, obj_list)
+    result = OrderUtil.order_obj_dict(obj_dict, obj_list)
     print result

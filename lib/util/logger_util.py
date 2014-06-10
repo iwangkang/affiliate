@@ -14,8 +14,12 @@ import os
 import re
 import logging
 import logging.handlers
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 from affiliate.config import settings
+from affiliate.lib.util.date_util import DateUtil
 
 
 class LabelFilter(logging.Filter):
@@ -67,8 +71,23 @@ class EmailHandler(logging.handlers.SMTPHandler):
         return subject
 
     def emit(self, record):
-        if not settings.debug:
-            super(EmailHandler, self).emit(record)
+        for toaddr in self.toaddrs:
+            msg = MIMEMultipart()
+            msg['From'] = self.fromaddr
+            msg['To'] = toaddr
+            msg['Subject'] = self.subject
+
+            #添加邮件内容
+            message = 'ERROR %s:[%s]|%s: %s' % (DateUtil.get_sys_time('%Y-%m-%d %H:%M:%S'), record.filename, record.lineno, record.message)
+            txt = MIMEText(message)
+            msg.attach(txt)
+
+            #发送邮件
+            smtp = smtplib.SMTP()
+            smtp.connect(self.mailhost)
+            smtp.login(self.username, self.password)
+            smtp.sendmail(self.fromaddr, toaddr, msg.as_string())
+            smtp.quit()
 
 
 def _create_logger():
@@ -77,10 +96,7 @@ def _create_logger():
         os.makedirs(settings.log_path)
 
     formatter = logging.Formatter("%(levelname)s %(asctime)s [%(module)s]%(funcName)s|%(lineno)d: %(message)s", "%m-%d %H:%M:%S")
-    # file_handler = logging.handlers.WatchedFileHandler(
-    #     os.path.join(settings.log_path, settings.log_file),
-    #     encoding="utf-8",
-    # )
+
     file_handler = logging.handlers.RotatingFileHandler(
         os.path.join(settings.log_path, settings.log_file),
         maxBytes=settings.default_log_size,
@@ -92,12 +108,12 @@ def _create_logger():
 
     #TODO(codeb2cc):Make it asynchronous!
     email_handler = EmailHandler(
-        mailhost    = settings.log_mailhost,
-        fromaddr    = settings.log_from,
-        toaddrs     = settings.log_to,
-        subject     = settings.log_subject,
-        credentials = settings.log_credential,
-        secure = None,
+        mailhost=settings.log_mailhost,
+        fromaddr=settings.log_from,
+        toaddrs=settings.log_to,
+        subject=settings.log_subject,
+        credentials=settings.log_credential,
+        secure=None,
     )
     email_handler.setLevel(logging.WARNING)
 

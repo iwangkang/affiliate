@@ -38,15 +38,31 @@ class DateUtil(object):
         return sys_date
 
     @classmethod
-    def get_sys_time(cls):
+    def str_2_date(cls, data_str, split_str):
+        """将字符串转换成datetime类型"""
+        str_arr = data_str.split(split_str)
+        if len(str_arr) < 3:
+            return None
+        format_date = datetime(int(str_arr[0]), int(str_arr[1]), int(str_arr[2]))
+        return format_date
+
+    @classmethod
+    def get_sys_time(cls, format_str=None):
         """系统当前时间"""
-        local_time = time.localtime()
-        sys_time = time.strftime('%Y-%m-%d %H:%M:%S', local_time)
+        sys_time = datetime.now()
+        if format_str:
+            return sys_time.strftime(format_str)
         return sys_time
 
 
 if __name__ == '__main__':
-    print DateUtil.get_sys_date()
+    start_date = '2014-01-06'
+    end_date = '2014-01-26'
+    start_date = DateUtil.str_2_date(start_date, '-')
+    end_date = DateUtil.str_2_date(end_date, '-')
+    days = end_date - start_date
+    print type(days.days)
+    # print '%s-%s-%s' % (result.year, result.month, result.day)
     # start_date = '2014-01-06'
     # alive_days = 30
     # end_date = DateUtil.get_end_date(start_date, alive_days)

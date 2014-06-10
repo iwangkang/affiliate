@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>Import ProductFeeds</title>
+
+        <link href="../../static/images/favicon.ico" type="image/x-icon" rel="shortcut icon">
 		<link href="../../static/css/default.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="../../static/js/swfupload/swfupload.js"></script>
 		<script type="text/javascript" src="../../static/js/swfupload/swfupload.swfobject.js"></script>
@@ -16,7 +18,6 @@
                     upload_url : "/merchant/manage",
                     post_params : {
                         "method": "import",
-                        "merchant": "FocalPrice",
                         "p": "[1,2,3,783,123,0]",
                         "r": "173.0"
                     },
@@ -33,7 +34,7 @@
                     debug : false,
 
                     // Button Settings
-                    button_image_url : "../../static/images/select_button.jpg",
+                    button_image_url : "../../static/images/swfupload/select_button.jpg",
                     button_placeholder_id : "spanButtonPlaceholder",
                     button_width : 72,
                     button_height : 23,

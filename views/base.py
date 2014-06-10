@@ -79,11 +79,7 @@ class BaseHandler(RequestHandler):
         if not event:
             raise ValueError('event')
         mode = settings.production and 'normal' or 'debug'
-        logger.info('%s\t%s\t%s' % (
-                datetime.datetime.utcnow(),
-                '.'.join((mode, self._label, event, )),
-                value,
-            ))
+        logger.info('%s\t%s\t%s' % (datetime.datetime.utcnow(), '.'.join((mode, self._label, event, )), value,))
 
     def _jsonify_response(self, response, info=False):
         if not response:

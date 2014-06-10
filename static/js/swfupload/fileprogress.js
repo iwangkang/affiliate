@@ -33,7 +33,7 @@ function FileProgress(file, targetID) {
 
 		var progressImg = document.createElement("img");
 		progressImg.className = "progressImg";
-		progressImg.src = "../../static/images/image.jpg";
+		progressImg.src = "../../static/images/swfupload/image.jpg";
 
 		var progressText = document.createElement("input");
 		progressText.className = "progressName";

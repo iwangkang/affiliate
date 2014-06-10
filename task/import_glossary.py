@@ -20,12 +20,12 @@ from affiliate.lib.model.mongod.mongodb_util import MongodbUtil
 def import_glossary():
     """导入基础词汇表"""
     try:
-        exists_glossary = MongodbUtil.find_one('glossary')
+        exists_glossary = MongodbUtil.find_one('shopping', 'glossary')
         if exists_glossary:
             message = 'The glossary is exists!!!'
             logger.info(message)
             return
-        id = MongodbUtil.insert('glossary', glossary)
+        id = MongodbUtil.insert('shopping', 'glossary', glossary)
         if id:
             message = 'Import glossary(id:%s) successfully!!!' % id
             logger.info(message)
@@ -36,7 +36,7 @@ def import_glossary():
 def replenish_glossary(file_path, tag_name, obj_id=None):
     """根据文件补充词汇表"""
     try:
-        glossary = MongodbUtil.find_one('glossary', obj_id)
+        glossary = MongodbUtil.find_one('shopping', 'glossary', obj_id)
         category_list = XMLUtil.read_2_list(file_path, tag_name)
         category_set = XMLUtil.get_obj_set(category_list)
         for category in category_set:
@@ -45,7 +45,7 @@ def replenish_glossary(file_path, tag_name, obj_id=None):
                 word = word.lower()
                 if not glossary.get('used').__contains__(word):
                     glossary.get('used').append(word)
-        id = MongodbUtil.save('glossary', glossary)
+        id = MongodbUtil.save('shopping', 'glossary', glossary)
         if id:
             message = 'Replenish glossary(id:%s) successfully!!!' % id
             logger.info(message)

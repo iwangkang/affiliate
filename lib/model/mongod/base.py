@@ -19,10 +19,12 @@ class Base(object):
 
     mongod_host = settings.mongod_host
     mongod_port = settings.mongod_port
-    mongod_dbname = settings.mongod_dbname
-
     client = MongoClient(mongod_host, mongod_port)
-    db = client[mongod_dbname]
+    fs = gridfs.GridFS(client[settings.shopping_dbname])
 
-    fs = gridfs.GridFS(db)
+
+if __name__ == '__main__':
+    ps = Base.client[settings.shopping_dbname]['product'].find().skip(0).limit(10).sort([(u'price', 1)])
+    ps = list(ps)
+    print ps
 
