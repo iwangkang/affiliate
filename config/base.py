@@ -46,7 +46,7 @@ LOG_MAILHOST = 'smtp.exmail.qq.com:25'
 LOG_FROM = 'wangkang@xingcloud.com'
 LOG_TO = ('wangkang@xingcloud.com', '393478846@qq.com')
 LOG_SUBJECT = 'Email for affiliate error.'
-LOG_CREDENTIAL = ('wangkang@xingcloud.com', 'wk521025424')
+LOG_CREDENTIAL = ('wangkang@xingcloud.com', '123456')
 
 # PAGINATION
 PAGE_SIZE = 10
